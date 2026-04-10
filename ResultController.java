@@ -1,16 +1,16 @@
 package result;
-
+ 
 import utils.FileHandler;
 import java.util.*;
-
+ 
 public class ResultController {
     private static final String RESULTS_FILE = "data/results.json";
     private List<Result> results;
-
+ 
     public ResultController() {
         results = loadResults();
     }
-
+ 
     public Result saveResult(String studentId, String studentName,
                              String examId, String examTitle,
                              int score, int total) {
@@ -20,18 +20,18 @@ public class ResultController {
         saveResults();
         return r;
     }
-
+ 
     public List<Result> getResultsByStudent(String studentId) {
         List<Result> out = new ArrayList<>();
         for (Result r : results)
             if (r.getStudentId().equals(studentId)) out.add(r);
         return out;
     }
-
+ 
     public List<Result> getAllResults() {
         return Collections.unmodifiableList(results);
     }
-
+ 
     private List<Result> loadResults() {
         List<Result> list = new ArrayList<>();
         String content = FileHandler.readFile(RESULTS_FILE);
@@ -51,7 +51,7 @@ public class ResultController {
         }
         return list;
     }
-
+ 
     private void saveResults() {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < results.size(); i++) {
